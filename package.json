@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-frabbit-vue",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "frabbit internal eslint rules and config for vue",
   "main": "lib/index.js",
   "scripts": {
