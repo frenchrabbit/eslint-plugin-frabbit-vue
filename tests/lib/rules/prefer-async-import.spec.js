@@ -277,17 +277,18 @@ tester.run('prefer-async-import', rule, {
         },
       ],
     },
-    ,
     {
       filename: 'test.vue',
       code: `
         <template>
           <required-component></required-component>
+          <another-required-component></another-required-component>
         </template>
         <script>
           export default {
             components: {
-              RequiredComponent: () => import('somepath')
+              RequiredComponent: () => import('somepath'),
+              AnotherRequiredComponent: () => import('somepath2')
             }
           };
         </script>
@@ -295,12 +296,15 @@ tester.run('prefer-async-import', rule, {
       output: `
         <template>
           <required-component></required-component>
+          <another-required-component></another-required-component>
         </template>
         <script>
-import RequiredComponent from 'somepath'
-          export default {
+          import RequiredComponent from 'somepath'
+import AnotherRequiredComponent from 'somepath2'
+export default {
             components: {
-              RequiredComponent
+              RequiredComponent,
+              AnotherRequiredComponent
             }
           };
         </script>
@@ -308,7 +312,54 @@ import RequiredComponent from 'somepath'
       errors: [
         {
           message: 'Component "RequiredComponent" doesn\'t need async import',
-          line: 8,
+          line: 9,
+        },
+        {
+          message:
+            'Component "AnotherRequiredComponent" doesn\'t need async import',
+          line: 10,
+        },
+      ],
+    },
+    ,
+    {
+      filename: 'test.vue',
+      code: `
+        <template>
+          <required-component></required-component>
+          <another-required-component></another-required-component>
+        </template>
+        <script>
+          import RequiredComponent from 'somepath'
+          export default {
+            components: {
+              RequiredComponent,
+              AnotherRequiredComponent: () => import('somepath2')
+            }
+          };
+        </script>
+      `,
+      output: `
+        <template>
+          <required-component></required-component>
+          <another-required-component></another-required-component>
+        </template>
+        <script>
+          import RequiredComponent from 'somepath'
+          import AnotherRequiredComponent from 'somepath2'
+export default {
+            components: {
+              RequiredComponent,
+              AnotherRequiredComponent
+            }
+          };
+        </script>
+      `,
+      errors: [
+        {
+          message:
+            'Component "AnotherRequiredComponent" doesn\'t need async import',
+          line: 11,
         },
       ],
     },
