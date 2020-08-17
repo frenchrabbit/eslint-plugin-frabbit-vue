@@ -1,7 +1,7 @@
 'use strict'
 
 const RuleTester = require('eslint').RuleTester
-const rule = require('lib/rules/prefer-async-import')
+const rule = require('../../../lib/rules/prefer-async-import')
 
 const tester = new RuleTester({
   parser: require.resolve('vue-eslint-parser'),
@@ -13,10 +13,30 @@ const tester = new RuleTester({
 
 tester.run('prefer-async-import', rule, {
   valid: [
+    // no-vif
+    {
+      filename: 'test.vue',
+      code: `
+        <template>
+          <imported-component></imported-component>
+        </template>
+        <script>
+          import ImportedComponent from 'somepath'
+          export default {
+            components: {
+              ImportedComponent
+            }
+          };
+        </script>
+      `,
+    },
     // direct async
     {
       filename: 'test.vue',
       code: `
+        <template>
+          <async-component v-if="true"></async-component>
+        </template>
         <script>
           export default {
             components: {
@@ -30,6 +50,9 @@ tester.run('prefer-async-import', rule, {
     {
       filename: 'test.vue',
       code: `
+        <template>
+          <const-async-component v-if="true"></const-async-component>
+        </template>
         <script>
           const ConstAsyncComponent = () => import('somepath')
           export default {
@@ -47,6 +70,9 @@ tester.run('prefer-async-import', rule, {
     {
       filename: 'test.vue',
       code: `
+        <template>
+          <imported-component v-if="true"></imported-component>
+        </template>
         <script>
           import ImportedComponent from 'somepath'
           export default {
@@ -57,6 +83,9 @@ tester.run('prefer-async-import', rule, {
         </script>
       `,
       output: `
+        <template>
+          <imported-component v-if="true"></imported-component>
+        </template>
         <script>
           
           export default {
@@ -69,13 +98,16 @@ tester.run('prefer-async-import', rule, {
       errors: [
         {
           message: 'Component "ImportedComponent" should use async import.',
-          line: 6,
+          line: 9,
         },
       ],
     },
     {
       filename: 'test.vue',
       code: `
+        <template>
+          <required-component v-if="true"></required-component>
+        </template>
         <script>
           const RequiredComponent = require('somepath')
           export default {
@@ -86,6 +118,9 @@ tester.run('prefer-async-import', rule, {
         </script>
       `,
       output: `
+        <template>
+          <required-component v-if="true"></required-component>
+        </template>
         <script>
           
           export default {
@@ -98,13 +133,16 @@ tester.run('prefer-async-import', rule, {
       errors: [
         {
           message: 'Component "RequiredComponent" should use async import.',
-          line: 6,
+          line: 9,
         },
       ],
     },
     {
       filename: 'test.vue',
       code: `
+        <template>
+          <required-component v-if="true"></required-component>
+        </template>
         <script>
           const RequiredComponent = require('somepath'),
                 AnotherItem = 3
@@ -116,6 +154,9 @@ tester.run('prefer-async-import', rule, {
         </script>
       `,
       output: `
+        <template>
+          <required-component v-if="true"></required-component>
+        </template>
         <script>
           const 
                 AnotherItem = 3
@@ -129,13 +170,16 @@ tester.run('prefer-async-import', rule, {
       errors: [
         {
           message: 'Component "RequiredComponent" should use async import.',
-          line: 7,
+          line: 10,
         },
       ],
     },
     {
       filename: 'test.vue',
       code: `
+        <template>
+          <required-component v-if="true"></required-component>
+        </template>
         <script>
           const AnotherItem = 3,
                 RequiredComponent = require('somepath')
@@ -147,6 +191,9 @@ tester.run('prefer-async-import', rule, {
         </script>
       `,
       output: `
+        <template>
+          <required-component v-if="true"></required-component>
+        </template>
         <script>
           const AnotherItem = 3
           export default {
@@ -159,13 +206,16 @@ tester.run('prefer-async-import', rule, {
       errors: [
         {
           message: 'Component "RequiredComponent" should use async import.',
-          line: 7,
+          line: 10,
         },
       ],
     },
     {
       filename: 'test.vue',
       code: `
+        <template>
+          <required-component v-if="true"></required-component>
+        </template>
         <script>
           export default {
             components: {
@@ -175,6 +225,9 @@ tester.run('prefer-async-import', rule, {
         </script>
       `,
       output: `
+        <template>
+          <required-component v-if="true"></required-component>
+        </template>
         <script>
           export default {
             components: {
@@ -186,13 +239,16 @@ tester.run('prefer-async-import', rule, {
       errors: [
         {
           message: 'Component "RequiredComponent" should use async import.',
-          line: 5,
+          line: 8,
         },
       ],
     },
     {
       filename: 'test.vue',
       code: `
+        <template>
+          <required-component v-if="true"></required-component>
+        </template>
         <script>
           export default {
             components: {
@@ -202,6 +258,9 @@ tester.run('prefer-async-import', rule, {
         </script>
       `,
       output: `
+        <template>
+          <required-component v-if="true"></required-component>
+        </template>
         <script>
           export default {
             components: {
@@ -214,7 +273,42 @@ tester.run('prefer-async-import', rule, {
         {
           message:
             'Component "RequiredComponent" has incorrect async import, should be () => import().',
-          line: 5,
+          line: 8,
+        },
+      ],
+    },
+    ,
+    {
+      filename: 'test.vue',
+      code: `
+        <template>
+          <required-component></required-component>
+        </template>
+        <script>
+          export default {
+            components: {
+              RequiredComponent: () => import('somepath')
+            }
+          };
+        </script>
+      `,
+      output: `
+        <template>
+          <required-component></required-component>
+        </template>
+        <script>
+import RequiredComponent from 'somepath'
+          export default {
+            components: {
+              RequiredComponent
+            }
+          };
+        </script>
+      `,
+      errors: [
+        {
+          message: 'Component "RequiredComponent" doesn\'t need async import',
+          line: 8,
         },
       ],
     },

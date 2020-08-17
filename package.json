@@ -11,13 +11,13 @@
   "license": "MIT",
   "devDependencies": {
     "@vue/eslint-config-prettier": "^6.0.0",
-    "eslint": "^7.4.0",
-    "mocha": "^8.0.1",
+    "eslint": "^7.7.0",
+    "mocha": "^8.1.1",
     "vue-eslint-parser": "^7.1.0"
   },
   "dependencies": {
     "@getify/eslint-plugin-proper-ternary": "^3.0.1",
-    "@nuxtjs/eslint-config": "^3.0.0",
+    "@nuxtjs/eslint-config": "^3.1.0",
     "eslint-import-resolver-nuxt": "^1.0.1",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-nuxt": "^1.0.0",
@@ -30,7 +30,7 @@
     "eslint-plugin-tree-shaking": "^1.8.0",
     "eslint-plugin-unicorn": "^21.0.0",
     "eslint-plugin-vue": "^6.2.2",
-    "eslint-plugin-vue-scoped-css": "^0.5.0",
+    "eslint-plugin-vue-scoped-css": "^1.0.0",
     "eslint-plugin-you-dont-need-momentjs": "^1.6.0",
     "prettier": "^2.0.5",
     "requireindex": "^1.2.0"
