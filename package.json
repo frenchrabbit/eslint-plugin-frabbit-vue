@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-frabbit-vue",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "description": "frabbit internal eslint rules and config for vue",
   "main": "lib/index.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-tree-shaking": "^1.8.0",
     "eslint-plugin-unicorn": "^21.0.0",
-    "eslint-plugin-vue": "^7.0.0-beta.2",
+    "eslint-plugin-vue": "^6.2.2",
     "eslint-plugin-vue-scoped-css": "^1.0.0",
     "eslint-plugin-you-dont-need-momentjs": "^1.6.0",
     "prettier": "^2.0.5",
