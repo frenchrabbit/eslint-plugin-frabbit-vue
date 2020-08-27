@@ -46,6 +46,42 @@ tester.run('prefer-async-import', rule, {
         </script>
       `,
     },
+    // client-only
+    {
+      filename: 'test.vue',
+      code: `
+        <template>
+          <client-only>
+            <async-component></async-component>
+          </client-only>
+        </template>
+        <script>
+          export default {
+            components: {
+              AsyncComponent: () => import('somepath')
+            },
+          };
+        </script>
+      `,
+    },
+    // lazy-hydrate
+    {
+      filename: 'test.vue',
+      code: `
+        <template>
+          <LazyHydrate when-idle>
+            <async-component></async-component>
+          </LazyHydrate>
+        </template>
+        <script>
+          export default {
+            components: {
+              AsyncComponent: () => import('somepath')
+            },
+          };
+        </script>
+      `,
+    },
     // with const
     {
       filename: 'test.vue',
