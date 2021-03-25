@@ -752,7 +752,8 @@ tester.run('vue-no-unused-properties', rule, {
           export default {
             data () {
               return {
-                count: 2
+                count: 2,
+                cont: 1
               };
             }
           };
@@ -768,7 +769,8 @@ tester.run('vue-no-unused-properties', rule, {
           export default {
             data () {
               return {
-                /*count: 2*/
+                /*count: 2,*/
+                cont: 1
               };
             }
           };
@@ -834,7 +836,7 @@ tester.run('vue-no-unused-properties', rule, {
 
         <script>
           export default {
-            props: ['attributeName']
+            props: ['attributeName','attributeNam']
           };
         </script>
       `,
@@ -846,7 +848,7 @@ tester.run('vue-no-unused-properties', rule, {
 
         <script>
           export default {
-            props: [/*'attributeName'*/]
+            props: [/*'attributeName',*/'attributeNam']
           };
         </script>
       `,
