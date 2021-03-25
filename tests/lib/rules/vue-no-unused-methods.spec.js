@@ -11,7 +11,6 @@ const tester = new RuleTester({
   },
 })
 
-rule.meta.fixable = true
 tester.run('vue-no-unused-methods', rule, {
   valid: [
     // a method used in a script expression
@@ -254,6 +253,7 @@ tester.run('vue-no-unused-methods', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div>{{ getCont() }}</div>

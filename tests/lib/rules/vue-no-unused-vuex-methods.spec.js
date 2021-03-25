@@ -289,6 +289,7 @@ tester.run('vue-no-unused-vuex-methods', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div @click="sav" />
@@ -324,6 +325,7 @@ tester.run('vue-no-unused-vuex-methods', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div @click="sav" />
@@ -361,6 +363,7 @@ tester.run('vue-no-unused-vuex-methods', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div @click="sav" />
@@ -396,6 +399,7 @@ tester.run('vue-no-unused-vuex-methods', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div @click="sav" />
@@ -431,6 +435,7 @@ tester.run('vue-no-unused-vuex-methods', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div @click="sav" />
@@ -468,6 +473,7 @@ tester.run('vue-no-unused-vuex-methods', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div @click="sav" />

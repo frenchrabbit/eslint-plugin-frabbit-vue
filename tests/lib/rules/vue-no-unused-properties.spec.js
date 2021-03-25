@@ -720,6 +720,7 @@ tester.run('vue-no-unused-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div>{{ cont }}</div>
@@ -757,6 +758,7 @@ tester.run('vue-no-unused-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div>{{ cont }}</div>
@@ -798,6 +800,7 @@ tester.run('vue-no-unused-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div>{{ cont }}</div>
@@ -835,6 +838,7 @@ tester.run('vue-no-unused-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <a :[attributeNam]="url"> ... </a>

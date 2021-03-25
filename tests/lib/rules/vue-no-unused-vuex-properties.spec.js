@@ -579,6 +579,7 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div>{{ cont }}</div>
@@ -612,6 +613,7 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div>{{ cont }}</div>
@@ -647,6 +649,7 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div>{{ cont }}</div>
@@ -686,6 +689,7 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div>{{ cont }}</div>
@@ -725,6 +729,7 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div>{{ todosCount }}</div>
@@ -762,6 +767,7 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div>{{ cont }}</div>
@@ -801,6 +807,7 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div>{{ todosCount }}</div>
@@ -842,6 +849,7 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           }
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div>{{ contPlusLocalState }}</div>
@@ -879,6 +887,7 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           }
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <div>{{ cont }}</div>
@@ -912,6 +921,7 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <a :[attributeNam]="url"> ... </a>
@@ -945,6 +955,7 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
       output: `
         <template>
           <a :[attributeNam]="url"> ... </a>
