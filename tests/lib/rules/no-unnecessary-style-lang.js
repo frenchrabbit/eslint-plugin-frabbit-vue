@@ -17,6 +17,19 @@ tester.run('no-unnecessary-style-lang', rule, {
     {
       filename: 'test.vue',
       code: `
+      `,
+    },
+    // plain css no lang=""
+    {
+      filename: 'test.vue',
+      code: `
+        <template></template>
+      `,
+    },
+    // plain css no lang=""
+    {
+      filename: 'test.vue',
+      code: `
         <style>
           .class { color: red }
         </style>

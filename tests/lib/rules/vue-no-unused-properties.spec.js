@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-const RuleTester = require('eslint').RuleTester;
-const rule = require('../../../lib/rules/vue-no-unused-properties');
+const RuleTester = require('eslint').RuleTester
+const rule = require('../../../lib/rules/vue-no-unused-properties')
 
 const tester = new RuleTester({
   parser: require.resolve('vue-eslint-parser'),
@@ -9,7 +9,7 @@ const tester = new RuleTester({
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-});
+})
 
 tester.run('vue-no-unused-properties', rule, {
   valid: [
@@ -720,6 +720,17 @@ tester.run('vue-no-unused-properties', rule, {
           };
         </script>
       `,
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            props: [/*'count'*/]
+          };
+        </script>
+      `,
       errors: [
         {
           message: 'Unused property found: "count"',
@@ -741,6 +752,21 @@ tester.run('vue-no-unused-properties', rule, {
             data () {
               return {
                 count: 2
+              };
+            }
+          };
+        </script>
+      `,
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            data () {
+              return {
+                /*count: 2*/
               };
             }
           };
@@ -772,6 +798,21 @@ tester.run('vue-no-unused-properties', rule, {
           };
         </script>
       `,
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            computed: {
+              /*count() {
+                return 2;
+              }*/
+            }
+          };
+        </script>
+      `,
       errors: [
         {
           message: 'Unused computed property found: "count"',
@@ -794,6 +835,17 @@ tester.run('vue-no-unused-properties', rule, {
           };
         </script>
       `,
+      output: `
+        <template>
+          <a :[attributeNam]="url"> ... </a>
+        </template>
+
+        <script>
+          export default {
+            props: [/*'attributeName'*/]
+          };
+        </script>
+      `,
       errors: [
         {
           message: 'Unused property found: "attributeName"',
@@ -802,4 +854,4 @@ tester.run('vue-no-unused-properties', rule, {
       ],
     },
   ],
-});
+})

@@ -49,10 +49,12 @@ Then configure the rules you want to use under the rules section.
 
 Rules based on https://github.com/learningequality/kolibri tools, which packages seems to be abandoned:
 
-* `frabbit-vue/vue-no-unused-methods` - checks for unused methods
-* `frabbit-vue/vue-no-unused-properties` - checks for unused props, data, asyncData(Nuxt.js) and computed
-* `frabbit-vue/vue-no-unused-vuex-methods` - checks for unused mapActions, mapMutations
-* `frabbit-vue/vue-no-unused-vuex-properties` - checks for unused mapGetters
+Added fix mode, unused properties a commented
+
+* `frabbit-vue/vue-no-unused-methods` - (fixable) checks for unused methods
+* `frabbit-vue/vue-no-unused-properties` - (fixable) checks for unused props, data, asyncData(Nuxt.js) and computed
+* `frabbit-vue/vue-no-unused-vuex-methods` - (fixable) checks for unused mapActions, mapMutations
+* `frabbit-vue/vue-no-unused-vuex-properties` - (fixable) checks for unused mapGetters
 
 Custom vue eslint rules
 

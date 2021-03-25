@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-const RuleTester = require('eslint').RuleTester;
-const rule = require('../../../lib/rules/vue-no-unused-methods');
+const RuleTester = require('eslint').RuleTester
+const rule = require('../../../lib/rules/vue-no-unused-methods')
 
 const tester = new RuleTester({
   parser: require.resolve('vue-eslint-parser'),
@@ -9,8 +9,9 @@ const tester = new RuleTester({
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-});
+})
 
+rule.meta.fixable = true
 tester.run('vue-no-unused-methods', rule, {
   valid: [
     // a method used in a script expression
@@ -236,7 +237,6 @@ tester.run('vue-no-unused-methods', rule, {
   ],
 
   invalid: [
-    // unused method
     {
       filename: 'test.vue',
       code: `
@@ -254,6 +254,21 @@ tester.run('vue-no-unused-methods', rule, {
           };
         </script>
       `,
+      output: `
+        <template>
+          <div>{{ getCont() }}</div>
+        </template>
+
+        <script>
+          export default {
+            methods: {
+              /*getCount() {
+                return 2;
+              }*/
+            }
+          };
+        </script>
+      `,
       errors: [
         {
           message:
@@ -263,4 +278,4 @@ tester.run('vue-no-unused-methods', rule, {
       ],
     },
   ],
-});
+})
