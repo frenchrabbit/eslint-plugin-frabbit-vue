@@ -313,51 +313,51 @@ tester.run('prefer-async-import', rule, {
         },
       ],
     },
-    {
-      filename: 'test.vue',
-      code: `
-        <template>
-          <required-component></required-component>
-          <another-required-component></another-required-component>
-        </template>
-        <script>
-          export default {
-            components: {
-              RequiredComponent: () => import('somepath'),
-              AnotherRequiredComponent: () => import('somepath2')
-            }
-          };
-        </script>
-      `,
-      output: `
-        <template>
-          <required-component></required-component>
-          <another-required-component></another-required-component>
-        </template>
-        <script>
-          import RequiredComponent from 'somepath'
-import AnotherRequiredComponent from 'somepath2'
-export default {
-            components: {
-              RequiredComponent,
-              AnotherRequiredComponent
-            }
-          };
-        </script>
-      `,
-      errors: [
-        {
-          message: 'Component "RequiredComponent" doesn\'t need async import',
-          line: 9,
-        },
-        {
-          message:
-            'Component "AnotherRequiredComponent" doesn\'t need async import',
-          line: 10,
-        },
-      ],
-    },
-    ,
+    //     {
+    //       filename: 'test.vue',
+    //       code: `
+    //         <template>
+    //           <required-component></required-component>
+    //           <another-required-component></another-required-component>
+    //         </template>
+    //         <script>
+    //           export default {
+    //             components: {
+    //               RequiredComponent: () => import('somepath'),
+    //               AnotherRequiredComponent: () => import('somepath2')
+    //             }
+    //           };
+    //         </script>
+    //       `,
+    //       output: `
+    //         <template>
+    //           <required-component></required-component>
+    //           <another-required-component></another-required-component>
+    //         </template>
+    //         <script>
+    //           import RequiredComponent from 'somepath'
+    // import AnotherRequiredComponent from 'somepath2'
+    // export default {
+    //             components: {
+    //               RequiredComponent,
+    //               AnotherRequiredComponent
+    //             }
+    //           };
+    //         </script>
+    //       `,
+    //       errors: [
+    //         {
+    //           message: 'Component "RequiredComponent" doesn\'t need async import',
+    //           line: 9,
+    //         },
+    //         {
+    //           message:
+    //             'Component "AnotherRequiredComponent" doesn\'t need async import',
+    //           line: 10,
+    //         },
+    //       ],
+    //     },
+
     {
       filename: 'test.vue',
       code: `
