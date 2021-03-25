@@ -5,12 +5,16 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "npm run test:base -- --watch --growl",
-    "test": "mocha \"tests/lib/**/*.js\" --reporter dot"
+    "test": "mocha \"tests/lib/**/*.js\" --reporter dot",
+    "test:dev": "mocha \"tests/lib/**/no-unnecessary-style-lang.js\" --watch --reporter dot"
   },
   "author": "hello@frenchrabbit.ru",
   "license": "MIT",
   "devDependencies": {
+    "@semantic-release/exec": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
     "@vue/eslint-config-prettier": "^6.0.0",
+    "conventional-changelog-conventionalcommits": "^4.5.0",
     "eslint": "^7.22.0",
     "mocha": "^8.3.2",
     "vue-eslint-parser": "^7.6.0"
@@ -30,6 +34,7 @@
     "eslint-plugin-vue": "^7.7.0",
     "eslint-plugin-vue-scoped-css": "^1.1.0",
     "prettier": "^2.2.1",
-    "requireindex": "^1.2.0"
+    "requireindex": "^1.2.0",
+    "sass": "^1.32.8"
   }
 }

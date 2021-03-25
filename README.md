@@ -49,18 +49,19 @@ Then configure the rules you want to use under the rules section.
 
 Rules based on https://github.com/learningequality/kolibri tools, which packages seems to be abandoned:
 
-* frabbit-vue/vue-no-unused-methods - checks for unused methods
-* frabbit-vue/vue-no-unused-properties - checks for unused props, data, asyncData(Nuxt.js) and computed
-* frabbit-vue/vue-no-unused-vuex-methods - checks for unused mapActions, mapMutations
-* frabbit-vue/vue-no-unused-vuex-properties - checks for unused mapGetters
+* `frabbit-vue/vue-no-unused-methods` - checks for unused methods
+* `frabbit-vue/vue-no-unused-properties` - checks for unused props, data, asyncData(Nuxt.js) and computed
+* `frabbit-vue/vue-no-unused-vuex-methods` - checks for unused mapActions, mapMutations
+* `frabbit-vue/vue-no-unused-vuex-properties` - checks for unused mapGetters
 
 Custom vue eslint rules
 
-* frabbit-vue/vue-static-class-order-ext - (fixable) same as vue/static-class-order but takes into account "-", "_" class prefixes and puts them in the end, for example `class="a-class b-class -a-modifier -b-modifier"`
+* `frabbit-vue/vue-static-class-order-ext` - (fixable) same as vue/static-class-order but takes into account "-", "_" class prefixes and puts them in the end, for example `class="a-class b-class -a-modifier -b-modifier"`
 
 Additional rules
 
-* frabbit-vue/prefer-async-import - (fixable) forces to use async component import, `() => import('component')`
+* `frabbit-vue/prefer-async-import` - (fixable) forces to use async component import, when component have v-if or placed inside client-only/lazy-hydrate `() => import('component')`
+* `frabbit-vue/no-unnecessary-style-lang` - (fixable) Alpha! removes unnecessary lang="scss" if styles inside doesn't changes during scss compilation. This disables sass-loader for component and can speed up building.
 
 
 
