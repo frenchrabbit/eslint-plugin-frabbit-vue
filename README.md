@@ -40,6 +40,7 @@ Then configure the rules you want to use under the rules section.
         "frabbit-vue/vue-no-unused-properties": "error",
         "frabbit-vue/vue-no-unused-vuex-methods": "error",
         "frabbit-vue/vue-no-unused-vuex-properties": "error",
+        "frabbit-vue/vue-static-class-order-ext": "error"
     }
 }
 ```
@@ -55,7 +56,7 @@ Rules based on https://github.com/learningequality/kolibri tools, which packages
 
 Custom vue eslint rules
 
-* frabbit-vue/vue-static-class-order-ext - (fixable) same as vue/static-class-order but takes into account "-", "_" class prefixes and puts them in the end
+* frabbit-vue/vue-static-class-order-ext - (fixable) same as vue/static-class-order but takes into account "-", "_" class prefixes and puts them in the end, for example `class="a-class b-class -a-modifier -b-modifier"`
 
 Additional rules
 
