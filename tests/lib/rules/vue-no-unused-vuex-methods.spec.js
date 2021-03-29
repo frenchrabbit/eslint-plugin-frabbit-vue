@@ -27,6 +27,21 @@ tester.run('vue-no-unused-vuex-methods', rule, {
         </script>
       `,
     },
+    // a mutation used in a script expression
+    {
+      filename: 'test.vue',
+      code: `
+        <script>
+          export default {
+            methods: mapMutations(['save']),
+            created() {
+              const {save} = this
+              save()
+            }
+          };
+        </script>
+      `,
+    },
 
     // a mutation passed in a component
     {

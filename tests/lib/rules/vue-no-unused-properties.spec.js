@@ -28,6 +28,22 @@ tester.run('vue-no-unused-properties', rule, {
       `,
     },
 
+    // a property used in desctructure
+    {
+      filename: 'test.vue',
+      code: `
+        <script>
+          export default {
+            props: ['count'],
+            created() {
+              const {count} = this
+              alert(count + 1)
+            }
+          };
+        </script>
+      `,
+    },
+
     // a property being watched
     {
       filename: 'test.vue',
@@ -729,6 +745,47 @@ tester.run('vue-no-unused-properties', rule, {
         <script>
           export default {
             props: [/*'count'*/]
+          };
+        </script>
+      `,
+      errors: [
+        {
+          message: 'Unused property found: "count"',
+          line: 8,
+        },
+      ],
+    },
+    // unused property
+    {
+      filename: 'test.vue',
+      code: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            props: ['count'],
+            created() {
+              const {count} = this.$vm
+              console.log(count)
+            }
+          };
+        </script>
+      `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            props: [/*'count'*/],
+            created() {
+              const {count} = this.$vm
+              console.log(count)
+            }
           };
         </script>
       `,

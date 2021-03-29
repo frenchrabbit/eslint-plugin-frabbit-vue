@@ -27,6 +27,21 @@ tester.run('vue-no-unused-vuex-properties', rule, {
         </script>
       `,
     },
+    // a getter used in a destructure
+    {
+      filename: 'test.vue',
+      code: `
+        <script>
+          export default {
+            computed: mapGetters(['count']),
+            created() {
+              const {count} = this
+              alert(count)
+            }
+          };
+        </script>
+      `,
+    },
 
     // a getter being watched
     {

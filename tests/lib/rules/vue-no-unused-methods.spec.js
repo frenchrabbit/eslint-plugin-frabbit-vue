@@ -32,6 +32,29 @@ tester.run('vue-no-unused-methods', rule, {
       `,
     },
 
+    // a method used in a template desctructure
+    {
+      filename: 'test.vue',
+      code: `
+        <template>
+          <div>{{ getCount() }}</div>
+        </template>
+
+        <script>
+          export default {
+            methods: {
+              getCount() {
+                return 2;
+              }
+            },
+            mounted() {
+              const {getCount} = this
+              getCount()
+            }
+          }
+        </script>
+      `,
+    },
     // a method used in a template identifier
     {
       filename: 'test.vue',
