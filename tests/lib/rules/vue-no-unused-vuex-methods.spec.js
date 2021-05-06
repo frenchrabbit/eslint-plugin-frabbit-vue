@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-const RuleTester = require('eslint').RuleTester;
-const rule = require('../../../lib/rules/vue-no-unused-vuex-methods');
+const RuleTester = require('eslint').RuleTester
+const rule = require('../../../lib/rules/vue-no-unused-vuex-methods')
 
 const tester = new RuleTester({
   parser: require.resolve('vue-eslint-parser'),
@@ -9,7 +9,7 @@ const tester = new RuleTester({
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-});
+})
 
 tester.run('vue-no-unused-vuex-methods', rule, {
   valid: [
@@ -22,6 +22,21 @@ tester.run('vue-no-unused-vuex-methods', rule, {
             methods: mapMutations(['save']),
             created() {
               this.save()
+            }
+          };
+        </script>
+      `,
+    },
+    // a mutation used in a script expression
+    {
+      filename: 'test.vue',
+      code: `
+        <script>
+          export default {
+            methods: mapMutations(['save']),
+            created() {
+              const {save} = this
+              save()
             }
           };
         </script>
@@ -289,6 +304,18 @@ tester.run('vue-no-unused-vuex-methods', rule, {
           };
         </script>
       `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div @click="sav" />
+        </template>
+
+        <script>
+          export default {
+            methods: mapMutations([/*'save'*/])
+          };
+        </script>
+      `,
       errors: [
         {
           message: 'Unused Vuex mutation found: "save"',
@@ -309,6 +336,20 @@ tester.run('vue-no-unused-vuex-methods', rule, {
           export default {
             methods: mapMutations({
               save: 'sav'
+            })
+          };
+        </script>
+      `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div @click="sav" />
+        </template>
+
+        <script>
+          export default {
+            methods: mapMutations({
+              /*save: 'sav'*/
             })
           };
         </script>
@@ -337,6 +378,20 @@ tester.run('vue-no-unused-vuex-methods', rule, {
           };
         </script>
       `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div @click="sav" />
+        </template>
+
+        <script>
+          export default {
+            methods: {
+              ...mapMutations([/*'save'*/])
+            }
+          };
+        </script>
+      `,
       errors: [
         {
           message: 'Unused Vuex mutation found: "save"',
@@ -356,6 +411,18 @@ tester.run('vue-no-unused-vuex-methods', rule, {
         <script>
           export default {
             methods: mapActions(['save'])
+          };
+        </script>
+      `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div @click="sav" />
+        </template>
+
+        <script>
+          export default {
+            methods: mapActions([/*'save'*/])
           };
         </script>
       `,
@@ -379,6 +446,20 @@ tester.run('vue-no-unused-vuex-methods', rule, {
           export default {
             methods: mapActions({
               save: 'sav'
+            })
+          };
+        </script>
+      `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div @click="sav" />
+        </template>
+
+        <script>
+          export default {
+            methods: mapActions({
+              /*save: 'sav'*/
             })
           };
         </script>
@@ -407,6 +488,20 @@ tester.run('vue-no-unused-vuex-methods', rule, {
           };
         </script>
       `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div @click="sav" />
+        </template>
+
+        <script>
+          export default {
+            methods: {
+              ...mapActions([/*'save'*/])
+            }
+          };
+        </script>
+      `,
       errors: [
         {
           message: 'Unused Vuex action found: "save"',
@@ -415,4 +510,4 @@ tester.run('vue-no-unused-vuex-methods', rule, {
       ],
     },
   ],
-});
+})

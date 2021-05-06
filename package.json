@@ -1,18 +1,19 @@
 {
   "name": "eslint-plugin-frabbit-vue",
-  "version": "1.4.15",
+  "version": "1.8.3",
   "description": "frabbit internal eslint rules and config for vue",
   "main": "lib/index.js",
   "scripts": {
     "start": "npm run test:base -- --watch --growl",
     "test": "mocha \"tests/lib/**/*.js\" --reporter dot",
-    "test:dev": "mocha \"tests/lib/**/no-unnecessary-style-lang.js\" --watch --reporter dot"
+    "test:dev": "mocha \"tests/lib/**/vue-no-unused-properties.spec.js\" --watch --reporter dot"
   },
   "author": "hello@frenchrabbit.ru",
   "license": "MIT",
   "devDependencies": {
     "@semantic-release/exec": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
+    "@semantic-release/release-notes-generator": "^9.0.2",
     "@vue/eslint-config-prettier": "^6.0.0",
     "conventional-changelog-conventionalcommits": "^4.5.0",
     "eslint": "^7.22.0",
@@ -31,7 +32,7 @@
     "eslint-plugin-sonarjs": "^0.6.0",
     "eslint-plugin-standard": "^5.0.0",
     "eslint-plugin-unicorn": "^31.0.0",
-    "eslint-plugin-vue": "^7.7.0",
+    "eslint-plugin-vue": "^7.8.0",
     "eslint-plugin-vue-scoped-css": "^1.1.0",
     "prettier": "^2.2.1",
     "requireindex": "^1.2.0",

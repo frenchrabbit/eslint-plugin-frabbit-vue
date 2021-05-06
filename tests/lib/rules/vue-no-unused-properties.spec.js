@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-const RuleTester = require('eslint').RuleTester;
-const rule = require('../../../lib/rules/vue-no-unused-properties');
+const RuleTester = require('eslint').RuleTester
+const rule = require('../../../lib/rules/vue-no-unused-properties')
 
 const tester = new RuleTester({
   parser: require.resolve('vue-eslint-parser'),
@@ -9,7 +9,7 @@ const tester = new RuleTester({
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-});
+})
 
 tester.run('vue-no-unused-properties', rule, {
   valid: [
@@ -22,6 +22,22 @@ tester.run('vue-no-unused-properties', rule, {
             props: ['count'],
             created() {
               alert(this.count + 1)
+            }
+          };
+        </script>
+      `,
+    },
+
+    // a property used in desctructure
+    {
+      filename: 'test.vue',
+      code: `
+        <script>
+          export default {
+            props: ['count'],
+            created() {
+              const {count} = this
+              alert(count + 1)
             }
           };
         </script>
@@ -720,6 +736,59 @@ tester.run('vue-no-unused-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            props: [/*'count'*/]
+          };
+        </script>
+      `,
+      errors: [
+        {
+          message: 'Unused property found: "count"',
+          line: 8,
+        },
+      ],
+    },
+    // unused property
+    {
+      filename: 'test.vue',
+      code: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            props: ['count'],
+            created() {
+              const {count} = this.$vm
+              console.log(count)
+            }
+          };
+        </script>
+      `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            props: [/*'count'*/],
+            created() {
+              const {count} = this.$vm
+              console.log(count)
+            }
+          };
+        </script>
+      `,
       errors: [
         {
           message: 'Unused property found: "count"',
@@ -740,7 +809,25 @@ tester.run('vue-no-unused-properties', rule, {
           export default {
             data () {
               return {
-                count: 2
+                count: 2,
+                cont: 1
+              };
+            }
+          };
+        </script>
+      `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            data () {
+              return {
+                /*count: 2,*/
+                cont: 1
               };
             }
           };
@@ -772,6 +859,22 @@ tester.run('vue-no-unused-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            computed: {
+              /*count() {
+                return 2;
+              }*/
+            }
+          };
+        </script>
+      `,
       errors: [
         {
           message: 'Unused computed property found: "count"',
@@ -790,7 +893,19 @@ tester.run('vue-no-unused-properties', rule, {
 
         <script>
           export default {
-            props: ['attributeName']
+            props: ['attributeName','attributeNam']
+          };
+        </script>
+      `,
+      options: ['comment'],
+      output: `
+        <template>
+          <a :[attributeNam]="url"> ... </a>
+        </template>
+
+        <script>
+          export default {
+            props: [/*'attributeName',*/'attributeNam']
           };
         </script>
       `,
@@ -802,4 +917,4 @@ tester.run('vue-no-unused-properties', rule, {
       ],
     },
   ],
-});
+})
