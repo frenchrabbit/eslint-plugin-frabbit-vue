@@ -243,9 +243,9 @@
     strip-json-comments "^3.1.1"
 
 "@getify/eslint-plugin-proper-ternary@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@getify/eslint-plugin-proper-ternary/-/eslint-plugin-proper-ternary-3.0.1.tgz#4729443416004f5fd3a5241f860c01323ce597a2"
-  integrity sha512-/71MVVsLhHVYs59h0az6tZlUWWzLeKNnDGML0CCvoQ4hx37sMdSL82A3+QzJIFj3gRylvGhszn5k82E+mM6HSg==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@getify/eslint-plugin-proper-ternary/-/eslint-plugin-proper-ternary-3.1.1.tgz#4dd712b5acf13e1d12a2c76244999fbeacf67035"
+  integrity sha512-KMW2/F3uQT14bUt4Di+Jo7Dyeu/kclilCkKVdnuBvWm3SIJH/TjKDo1yqIpGUljjZLj7C3S0BY0XPG4pP176Gg==
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
