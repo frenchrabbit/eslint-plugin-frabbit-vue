@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-const RuleTester = require('eslint').RuleTester;
-const rule = require('../../../lib/rules/vue-no-unused-vuex-properties');
+const RuleTester = require('eslint').RuleTester
+const rule = require('../../../lib/rules/vue-no-unused-vuex-properties')
 
 const tester = new RuleTester({
   parser: require.resolve('vue-eslint-parser'),
@@ -9,7 +9,7 @@ const tester = new RuleTester({
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-});
+})
 
 tester.run('vue-no-unused-vuex-properties', rule, {
   valid: [
@@ -22,6 +22,21 @@ tester.run('vue-no-unused-vuex-properties', rule, {
             computed: mapGetters(['count']),
             created() {
               alert(this.count)
+            }
+          };
+        </script>
+      `,
+    },
+    // a getter used in a destructure
+    {
+      filename: 'test.vue',
+      code: `
+        <script>
+          export default {
+            computed: mapGetters(['count']),
+            created() {
+              const {count} = this
+              alert(count)
             }
           };
         </script>
@@ -579,6 +594,18 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            computed: mapGetters([/*'count'*/])
+          };
+        </script>
+      `,
       errors: [
         {
           message: 'Unused Vuex getter found: "count"',
@@ -598,6 +625,18 @@ tester.run('vue-no-unused-vuex-properties', rule, {
         <script>
           export default {
             computed: mapGetters('module', ['count'])
+          };
+        </script>
+      `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            computed: mapGetters('module', [/*'count'*/])
           };
         </script>
       `,
@@ -621,6 +660,20 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           export default {
             computed: {
               ...mapGetters(['count'])
+            }
+          };
+        </script>
+      `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            computed: {
+              ...mapGetters([/*'count'*/])
             }
           };
         </script>
@@ -651,6 +704,22 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            computed: {
+              ...mapGetters({
+                /*count: 'todosCount'*/
+              })
+            }
+          };
+        </script>
+      `,
       errors: [
         {
           message: 'Unused Vuex getter found: "count"',
@@ -671,6 +740,20 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           export default {
             computed: mapState({
               count: state => state.todosCount
+            })
+          };
+        </script>
+      `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ todosCount }}</div>
+        </template>
+
+        <script>
+          export default {
+            computed: mapState({
+              /*count: state => state.todosCount*/
             })
           };
         </script>
@@ -699,6 +782,20 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            computed: mapState('module', {
+              /*count: state => state.todosCount*/
+            })
+          };
+        </script>
+      `,
       errors: [
         {
           message: 'Unused Vuex state found: "count"',
@@ -720,6 +817,22 @@ tester.run('vue-no-unused-vuex-properties', rule, {
             computed: {
               ...mapState({
                 count: state => state.todosCount
+              })
+            }
+          };
+        </script>
+      `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ todosCount }}</div>
+        </template>
+
+        <script>
+          export default {
+            computed: {
+              ...mapState({
+                /*count: state => state.todosCount*/
               })
             }
           };
@@ -751,6 +864,22 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           }
         </script>
       `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ contPlusLocalState }}</div>
+        </template>
+
+        <script>
+          export default {
+            computed: mapState({
+              /*countPlusLocalState (state) {
+                return state.count + this.localCount
+              }*/
+            })
+          }
+        </script>
+      `,
       errors: [
         {
           message: 'Unused Vuex state found: "countPlusLocalState"',
@@ -770,6 +899,18 @@ tester.run('vue-no-unused-vuex-properties', rule, {
         <script>
           export default {
             computed: mapState(['count'])
+          }
+        </script>
+      `,
+      options: ['comment'],
+      output: `
+        <template>
+          <div>{{ cont }}</div>
+        </template>
+
+        <script>
+          export default {
+            computed: mapState([/*'count'*/])
           }
         </script>
       `,
@@ -795,6 +936,18 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
+      output: `
+        <template>
+          <a :[attributeNam]="url"> ... </a>
+        </template>
+
+        <script>
+          export default {
+            computed: mapGetters([/*'attributeName'*/]),
+          };
+        </script>
+      `,
       errors: [
         {
           message: 'Unused Vuex getter found: "attributeName"',
@@ -817,6 +970,18 @@ tester.run('vue-no-unused-vuex-properties', rule, {
           };
         </script>
       `,
+      options: ['comment'],
+      output: `
+        <template>
+          <a :[attributeNam]="url"> ... </a>
+        </template>
+
+        <script>
+          export default {
+            computed: mapState([/*'attributeName'*/]),
+          };
+        </script>
+      `,
       errors: [
         {
           message: 'Unused Vuex state found: "attributeName"',
@@ -825,4 +990,4 @@ tester.run('vue-no-unused-vuex-properties', rule, {
       ],
     },
   ],
-});
+})

@@ -17,6 +17,13 @@
         ]
       }
     ],
+    [
+      "@semantic-release/release-notes-generator",{
+      "preset": "conventionalcommits",
+      "writerOpts": {
+        "commitsSort": ["subject", "scope"]
+      }
+    }],
     "@semantic-release/npm",
     [
       "@semantic-release/git",
