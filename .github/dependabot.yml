@@ -9,16 +9,3 @@ updates:
   - maddocnc
   assignees:
   - maddocnc
-  ignore:
-  - dependency-name: eslint-plugin-unicorn
-    versions:
-    - 30.0.0
-  - dependency-name: sass
-    versions:
-    - 1.32.11
-  - dependency-name: eslint
-    versions:
-    - 7.24.0
-  - dependency-name: eslint-plugin-promise
-    versions:
-    - 5.0.0
