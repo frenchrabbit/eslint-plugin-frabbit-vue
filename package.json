@@ -17,7 +17,7 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "conventional-changelog-conventionalcommits": "^4.5.0",
     "eslint": "^7.22.0",
-    "mocha": "^8.3.2",
+    "mocha": "^9.1.2",
     "vue-eslint-parser": "^7.6.0"
   },
   "dependencies": {
