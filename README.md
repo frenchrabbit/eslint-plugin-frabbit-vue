@@ -69,7 +69,6 @@ Additional rules
 
 ## Important
 
-Plugin depends on https://github.com/vuejs/eslint-plugin-vue/pull/1064 for full support.
 Vue components templates should be html, pug is not supported by vue-eslint-parser. By the way most plugins not support pug for this reason
 
 ## Config
