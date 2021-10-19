@@ -18,7 +18,7 @@
     "conventional-changelog-conventionalcommits": "^4.5.0",
     "eslint": "^7.22.0",
     "mocha": "^9.1.2",
-    "vue-eslint-parser": "^7.6.0"
+    "vue-eslint-parser": "^8.0.0"
   },
   "dependencies": {
     "@getify/eslint-plugin-proper-ternary": "^3.0.1",
