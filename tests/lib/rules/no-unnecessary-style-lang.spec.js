@@ -56,6 +56,12 @@ tester.run('no-unnecessary-style-lang', rule, {
         </style>
       `,
     },
+    {
+      filename: 'test.vue',
+      code: `
+        <style src="my.scss" lang="sass"></style>
+      `,
+    },
   ],
 
   invalid: [
