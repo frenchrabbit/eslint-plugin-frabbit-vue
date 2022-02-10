@@ -33,15 +33,58 @@ Add `frabbit-vue` to the plugins section of your `.eslintrc` configuration file.
 
 Then configure the rules you want to use under the rules section.
 
-```json
-{
-    "rules": {
-        "frabbit-vue/vue-no-unused-methods": "error",
-        "frabbit-vue/vue-no-unused-properties": "error",
-        "frabbit-vue/vue-no-unused-vuex-methods": "error",
-        "frabbit-vue/vue-no-unused-vuex-properties": "error",
-        "frabbit-vue/vue-static-class-order-ext": "error"
-    }
+```javascript
+module.exports = {
+  "rules": {
+    "frabbit-vue/vue-no-unused-methods": "error",
+    "frabbit-vue/vue-no-unused-properties": "error",
+    "frabbit-vue/vue-no-unused-vuex-methods": "error",
+    "frabbit-vue/vue-no-unused-vuex-properties": "error",
+    "frabbit-vue/vue-static-class-order-ext": "error",
+    "frabbit-vue/require-attributes": [
+      "error",
+      {
+        "img": {
+          /**
+           * this attributes requred to be with values
+           */
+          "value": ["width", "height"],
+          /**
+           * this attributes required to be at list without value
+           */
+          "empty": ['data-my-extra-attribute'],
+          /**
+           * user callback, wich is another way to set rules
+           * attrs here is object with attributes, like
+           *   {
+           *     src: 'img.png',
+           *     width: '100',
+           *     height: '100',
+           *   }
+           * this callback should return one of the:
+           *  - true - no error
+           *  - false - error, will says that it is callback error
+           *  - string - error with returned string
+           *  - object - new attributes object, will replace ALL ATRIBUTES
+           *
+           *  could be used for example to force change src to v-lazy directive on images
+           */
+          callback: 
+            (attrs) => {
+
+            if (attrs.src) {
+              const src = attrs.src
+              delete attrs.src
+              attrs['v-lazy'] = attrs['v-lazy'] || `{src:'${src}'}`
+              return attrs
+            }
+            return true
+          }
+        }
+      },
+      
+    ]
+  }
 }
 ```
 
