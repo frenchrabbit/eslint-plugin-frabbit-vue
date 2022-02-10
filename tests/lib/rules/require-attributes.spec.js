@@ -98,12 +98,12 @@ tester.run('require-attributes', rule, {
       filename: 'test.vue',
       code: `
         <template>
-          <img src="test.png" width="100" height="100"/>
+          <img src="test.png" width="100" :height="100"/>
         </template>
       `,
       output: `
         <template>
-          <img src="test.png" width="100" height="100" data-lazy/>
+          <img src="test.png" width="100" :height="100" data-lazy/>
         </template>
       `,
       options: [{
@@ -117,6 +117,10 @@ tester.run('require-attributes', rule, {
           message:
             'Attribute data-lazy is requred, at least empty on <img>!',
           line: 3,
+        },{
+          message:
+            'Attribute height is requred, on <img>!',
+          line: 3,
         },
       ],
     },
@@ -124,12 +128,12 @@ tester.run('require-attributes', rule, {
       filename: 'test.vue',
       code: `
         <template>
-          <img src="test.png" width="100" height="100"/>
+          <img src="test.png" width="100" :height="100" v-bind:alt="100" v-on:click="click()" @click.native="click"/>
         </template>
       `,
       output: `
         <template>
-          <img  width="100" height="100" v-lazy="{src:'test.png'}"/>
+          <img  width="100" :height="100" v-bind:alt="100" v-on:click="click()" @click.native="click" v-lazy="{src:'test.png'}"/>
         </template>
       `,
       options: [{
