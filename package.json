@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run test:base -- --watch --growl",
     "test": "mocha \"tests/lib/**/*.js\" --reporter dot",
-    "test:dev": "mocha \"tests/lib/**/vue-no-unused-properties.spec.js\" --watch --reporter dot"
+    "test:dev": "mocha \"tests/lib/**/require-attributes.spec.js\" --watch --reporter dot"
   },
   "author": "hello@frenchrabbit.ru",
   "license": "MIT",
