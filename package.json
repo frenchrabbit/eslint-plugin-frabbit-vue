@@ -1,12 +1,12 @@
 {
   "name": "eslint-plugin-frabbit-vue",
-  "version": "1.8.3",
+  "version": "1.8.5",
   "description": "frabbit internal eslint rules and config for vue",
   "main": "lib/index.js",
   "scripts": {
     "start": "npm run test:base -- --watch --growl",
     "test": "mocha \"tests/lib/**/*.js\" --reporter dot",
-    "test:dev": "mocha \"tests/lib/**/no-unnecessary-style-lang.spec.js\" --watch --reporter dot"
+    "test:dev": "mocha \"tests/lib/**/prefer-async-import.spec.js\" --watch --reporter dot"
   },
   "author": "hello@frenchrabbit.ru",
   "license": "MIT",
