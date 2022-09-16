@@ -854,9 +854,9 @@ eslint-plugin-unicorn@^42.0.0:
     strip-indent "^3.0.0"
 
 eslint-plugin-vue@^9.2.0:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-9.2.0.tgz#b7ca02b2ce8218b7586346440fc61c2655db353a"
-  integrity sha512-W2hc+NUXoce8sZtWgZ45miQTy6jNyuSdub5aZ1IBune4JDeAyzucYX0TzkrQ1jMO52sNUDYlCIHDoaNePe0p5g==
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-9.5.0.tgz#bbfea787cee8d57d6418d0425c5daa00d044f530"
+  integrity sha512-Dm4KJRD6yFZGy6OhtgcG35oMR9rAhGfP6vbANw2k5wvQn9YjKu9huRV3Y63pYUbqPTHJ3V4v5+EcGmJSSjWgSA==
   dependencies:
     eslint-utils "^3.0.0"
     natural-compare "^1.4.0"
